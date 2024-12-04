@@ -1,7 +1,7 @@
 from func_help.func_help import List
 from collections import Counter
 
-with open('input/day1.txt', 'r') as f:
+with open('../input/day1.txt', 'r') as f:
     s = f.read()
 
 # Example
