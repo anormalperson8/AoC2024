@@ -31,5 +31,6 @@ with open('../input/day2.txt', 'r') as f:
 # 1 3 6 7 9"""
 
 lines = List(s.splitlines()).stream().map(lambda r: List(r.split(" ")).stream().map(lambda i: int(i)).to_list()).to_list()
-print("Part 1:", lines.stream().map(check_line).reduce(lambda a, b: a + b))
-print("Part 2:", lines.stream().map(check_line2).reduce(lambda a, b: a + b))
+apply = lambda x, func: x.stream().map(func).reduce(lambda a, b: a + b)
+print("Part 1:", apply(lines, check_line))
+print("Part 2:", apply(lines, check_line2))
