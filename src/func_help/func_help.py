@@ -47,6 +47,9 @@ class List:
     def extend(self, iterable: Iterable[T]) -> None:
         self._data.extend(iterable)
 
+    def index(self, item: T) -> int:
+        return self._data.index(item)
+
     def append_and_ret(self, item: T) -> "List[T]":
         self._data.append(item)
         return self
@@ -81,11 +84,17 @@ class Stream:
             raise TypeError("Non-iterable stream??")
         self._data: Iterable[T] = iterable
 
+    def for_each(self, func: Callable[[T], None]) -> None:
+        for i in self._data: func(i)
+
     def map(self, func: Callable[[T], R]) -> "Stream[R]":
         return Stream(map(func, self._data))
 
     def flat_map(self, func: Callable[[T], Iterable[R]]) -> "Stream[R]":
         return Stream(chain.from_iterable(map(func, self._data)))
+
+    def filter(self, func: Callable[[T], bool]) -> "Stream[T]":
+        return Stream(filter(func, self._data))
 
     def reduce(self, func: Callable[[T, T], T], initializer: Optional[T] = None) -> T:
         if initializer is not None:
