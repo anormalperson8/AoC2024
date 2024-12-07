@@ -1,4 +1,3 @@
-from operator import truediv
 from typing import Iterable, TypeVar, Callable, Optional, Union, Iterator
 from functools import reduce, cmp_to_key
 from itertools import chain
@@ -84,6 +83,12 @@ class Stream:
             raise TypeError("Non-iterable stream??")
         self._data: Iterable[T] = iterable
 
+    def __repr__(self) -> str:
+        return f"Stream({list(self._data)})"
+
+    def __iter__(self) -> Iterator[T]:
+        return iter(self._data)
+
     def for_each(self, func: Callable[[T], None]) -> None:
         for i in self._data: func(i)
 
@@ -107,9 +112,3 @@ class Stream:
 
     def to_primitive(self):
         return list(self._data)
-
-    def __repr__(self) -> str:
-        return f"Stream({list(self._data)})"
-
-    def __iter__(self) -> Iterator[T]:
-        return iter(self._data)
