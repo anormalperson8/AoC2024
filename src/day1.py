@@ -20,6 +20,3 @@ print("Part 1:", List(zip(left, right)).stream().map(lambda i: abs(i[0] - i[1]))
 
 right_count = Counter(right_original)
 print("Part 2:", List(left_original).stream().map(lambda i: int(i) * right_count[i] if i in right_count.keys() else 0).reduce(lambda a, b: a + b))
-
-
-

@@ -49,9 +49,3 @@ for i in range(len(horizontal[0]) - 2):
         num += check([horizontal[i][j], horizontal[i][j+2], horizontal[i+1][j+1], horizontal[i+2][j], horizontal[i+2][j+2]])
 
 print("Part 2:", num)
-
-
-
-
-
-
