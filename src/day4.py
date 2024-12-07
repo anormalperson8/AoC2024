@@ -26,13 +26,10 @@ horizontal_backwards = horizontal.stream().map(lambda i: i[::-1]).to_list()
 vertical = List(zip(*horizontal)).stream().map(lambda i: "".join(i)).to_list()
 vertical_backwards = vertical.stream().map(lambda i: i[::-1]).to_list()
 
-diagonal = (List(["".join([horizontal[i+j][j] for j in range(len(horizontal[0]) - i)]) for i in range(len(vertical[0]))][:0:-1])
-            .extend_and_ret(List(["".join([horizontal[j][i+j] for j in range(len(vertical[0]) - i)]) for i in range(len(horizontal[0]))]))
-            )
+diagonal = List(["".join([horizontal[i+j][j] for j in range(len(horizontal[0]) - i)]) for i in range(len(vertical[0]))][:0:-1]).extend_and_ret(List(["".join([horizontal[j][i+j] for j in range(len(vertical[0]) - i)]) for i in range(len(horizontal[0]))]))
 diagonal_backwards = diagonal.stream().map(lambda i: i[::-1]).to_list()
 
-reverse_diagonal = (List(["".join([horizontal[i+j][len(horizontal[0])-j-1] for j in range(len(horizontal[0]) - i)]) for i in range(len(vertical[0]))][:0:-1])
-                    .extend_and_ret(List(["".join([horizontal[j][len(horizontal[0])-i-j-1] for j in range(len(vertical[0]) - i)]) for i in range(len(horizontal[0]))])))
+reverse_diagonal = List(["".join([horizontal[i+j][len(horizontal[0])-j-1] for j in range(len(horizontal[0]) - i)]) for i in range(len(vertical[0]))][:0:-1]).extend_and_ret(List(["".join([horizontal[j][len(horizontal[0])-i-j-1] for j in range(len(vertical[0]) - i)]) for i in range(len(horizontal[0]))]))
 reverse_diagonal_backwards = reverse_diagonal.stream().map(lambda i: i[::-1]).to_list()
 
 toFind = "(XMAS)"
